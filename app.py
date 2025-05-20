@@ -27,7 +27,7 @@ async def retrieve(query: str):
 
 
 @app.get("/generate/")
-async def retrieve(query: str):
+async def generate(query: str):
     client = connect_wxd()
     index_names = ["mm-banking-url"]
     response = wxd_search_basic(client, query, index_names)
@@ -39,7 +39,7 @@ async def retrieve(query: str):
 
 
 @app.get("/connect/")
-async def retrieve(query: str):
+async def connect(query: str):
     client = connect_wxd()
     return client.info()
 

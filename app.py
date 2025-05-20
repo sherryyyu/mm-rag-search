@@ -35,7 +35,7 @@ async def retrieve(query: str):
     answer = generate_answer(query, hits)
     titles = [hit["_source"]["document_title"] for hit in hits]
     urls = [hit["_source"]["document_url"] for hit in hits]
-    return {"answer":answer, "titles":titles, "urls":urls}
+    return {"answer":answer, "titles":list(dict.fromkeys(titles)), "urls":list(dict.fromkeys(urls))}
 
 
 @app.get("/connect/")

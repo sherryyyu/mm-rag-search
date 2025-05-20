@@ -111,7 +111,7 @@ def generate_answer(query, hits):
     )
 
     messages = make_prompt(query, hits)
-
+    e = ""
     try:
         response = model.chat(messages=messages)
         answer = response["choices"][0]["message"]["content"].strip()
@@ -119,4 +119,4 @@ def generate_answer(query, hits):
     except Exception as e:
         print(f"Error processing image: {e}")
 
-    return answer
+    return e

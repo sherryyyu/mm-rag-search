@@ -17,7 +17,6 @@ def connect_wxd():
         basic_auth=(wxd_username, wxd_pwd)
     )
 
-    print(client.info())
     return client
 
 

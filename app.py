@@ -29,6 +29,12 @@ async def retrieve(query: str):
     return {"answer":answer, "titles":titles, "urls":urls}
 
 
+@app.get("/connect/")
+async def retrieve(query: str):
+    client = connect_wxd()
+    return client.info()
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app)

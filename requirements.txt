@@ -2,3 +2,4 @@ elasticsearch==8.15
 fastapi
 dotenv
 uvicorn
+ibm_watsonx_ai

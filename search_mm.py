@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from elasticsearch import Elasticsearch
+from ibm_watsonx_ai.foundation_models import ModelInference
 
 
 def connect_wxd():
@@ -83,11 +84,6 @@ def make_prompt(query, hits):
 
 
 def generate_answer(query, hits):
-    import os
-    from dotenv import load_dotenv
-    from ibm_watsonx_ai.foundation_models import ModelInference
-
-    load_dotenv()
 
     # --- Set your IBM watsonx credentials and config ---
     model_id = "meta-llama/llama-4-maverick-17b-128e-instruct-fp8"
@@ -111,7 +107,6 @@ def generate_answer(query, hits):
     )
 
     messages = make_prompt(query, hits)
-    e = ""
     try:
         response = model.chat(messages=messages)
         answer = response["choices"][0]["message"]["content"].strip()
@@ -119,4 +114,4 @@ def generate_answer(query, hits):
     except Exception as e:
         print(f"Error processing image: {e}")
 
-    return e
+    return answer

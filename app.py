@@ -23,6 +23,15 @@ async def retrieve(query: str):
     index_names = ["mm-banking-url"]
     response = wxd_search_basic(client, query, index_names)
     hits = response["hits"]["hits"]
+    return hits
+
+
+@app.get("/generate/")
+async def retrieve(query: str):
+    client = connect_wxd()
+    index_names = ["mm-banking-url"]
+    response = wxd_search_basic(client, query, index_names)
+    hits = response["hits"]["hits"]
     answer = generate_answer(query, hits)
     titles = [hit["_source"]["document_title"] for hit in hits]
     urls = [hit["_source"]["document_url"] for hit in hits]
